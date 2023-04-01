@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 
-function InputBox({ form, action }) {
+function AddToDoForm({ form, action }) {
     return (
         <Form>
             <Form.Group
@@ -20,4 +20,4 @@ function InputBox({ form, action }) {
     );
 }
 
-export default InputBox;
+export default AddToDoForm;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import InputBox from "./components/InputBox";
+import AddToDoForm from "./components/forms/AddToDoForm";
 import DataTable from "./components/DataTable";
 import Buttons from "./components/Buttons";
 import CheckBox from "./components/CheckBox";
-import ErrorModal from "./components/ErrorModal";
+import ErrorModal from "./components/modals/ErrorModal";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
@@ -60,7 +60,7 @@ function App() {
 
     return (
         <div className="App" style={padding}>
-            <InputBox form={form} action={setForm} />
+            <AddToDoForm form={form} action={setForm} />
             <CheckBox status={status} action={setStatus} />
             <Buttons label="ADD TODO" action={addTask} />
             <DataTable

@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import EditForm from "./EditForm";
+import EditToDoForm from "../forms/EditToDoForm";
 
 function EditModal({ showModal, closeModal }) {
     return (
@@ -11,7 +11,7 @@ function EditModal({ showModal, closeModal }) {
                     <Modal.Title>EDIT</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <EditForm />
+                    <EditToDoForm />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button

@@ -1,8 +1,8 @@
 import React from "react";
-import InputBox from "./InputBox";
-import CheckBox from "./CheckBox";
+import InputBox from "./AddToDoForm";
+import CheckBox from "../CheckBox";
 
-function EditForm() {
+function EditToDoForm() {
     return (
         <div>
             <InputBox />
@@ -11,4 +11,4 @@ function EditForm() {
     );
 }
 
-export default EditForm;
+export default EditToDoForm;
