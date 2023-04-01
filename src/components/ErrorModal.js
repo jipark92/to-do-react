@@ -1,12 +1,12 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 
-function Modals({ show, onHide }) {
+function Modals({ showModal, closeModal }) {
     return (
         <Modal
             size="sm"
-            show={show}
-            onHide={onHide}
+            show={showModal}
+            onHide={closeModal}
             aria-labelledby="example-modal-sizes-title-sm"
             centered
         >

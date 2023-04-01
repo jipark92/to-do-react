@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Spinners from "./Spinners";
 import Buttons from "./Buttons";
 import Badges from "./Badges";
+import EditModal from "./EditModal";
+import DeleteModal from "./DeleteModal";
 
-function DataTable({ toDos, isLoading }) {
+function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
+    //ui
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    //data
+    const [id, setId] = useState();
+
     return !isLoading ? (
-        <div>
+        <>
             <h1 style={header}>TO DO LIST</h1>
             <Table striped bordered hover size="sm">
                 <thead>
@@ -14,7 +22,8 @@ function DataTable({ toDos, isLoading }) {
                         <th stlye={taskNumberStyle}>#</th>
                         <th style={toDosStyle}>To Do</th>
                         <th style={statusStyle}>Status</th>
-                        <th style={editBtnStyle}>Action</th>
+                        <th style={editBtnStyle}>Edit</th>
+                        <th style={deleteBtnStyle}>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,18 +47,44 @@ function DataTable({ toDos, isLoading }) {
                                     )}
                                 </td>
                                 <td style={editBtnStyle}>
-                                    <Buttons size="sm" label="EDIT" />
+                                    <Buttons
+                                        size="sm"
+                                        label="Edit"
+                                        action={setIsEditModalOpen}
+                                    />
+                                </td>
+                                <td style={deleteBtnStyle}>
+                                    <Buttons
+                                        size="sm"
+                                        label="Delete"
+                                        color="danger"
+                                        action={() => {
+                                            setIsDeleteModalOpen(true);
+                                            setId(id);
+                                        }}
+                                    />
                                 </td>
                             </tr>
                         );
                     })}
                 </tbody>
             </Table>
-        </div>
+            <EditModal
+                showModal={isEditModalOpen}
+                closeModal={setIsEditModalOpen}
+                editToDo={() => editToDo(id)}
+            />
+            <DeleteModal
+                showModal={isDeleteModalOpen}
+                closeModal={setIsDeleteModalOpen}
+                deleteToDo={() => deleteTodo(id)}
+            />
+            {toDos.length > 0 && (
+                <Buttons label="CLEAR" color="danger" action={clearToDos} />
+            )}
+        </>
     ) : (
-        <div style={spinners}>
-            <Spinners />
-        </div>
+        <Spinners />
     );
 }
 
@@ -58,19 +93,14 @@ const header = {
     margin: 25,
 };
 
-const spinners = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "50vh",
-};
-
 const taskNumberStyle = { width: "5%" };
 
 const toDosStyle = { width: "75%" };
 
 const statusStyle = { textAlign: "end", width: "10%" };
 
-const editBtnStyle = { textAlign: "end", width: "10%" };
+const editBtnStyle = { textAlign: "end", width: "5%" };
+
+const deleteBtnStyle = { textAlign: "end", width: "10%" };
 
 export default DataTable;
