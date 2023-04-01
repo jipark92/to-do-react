@@ -1,27 +1,60 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import BinputBox from './components/BinputBox';
-import Btables from './components/Btables';
-import Bbutton from './components/Bbutton';
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import InputBox from "./components/InputBox";
+import DataTable from "./components/DataTable";
+import Buttons from "./components/Buttons";
+import CheckBox from "./components/CheckBox";
+
+import { v4 as uuidv4 } from "uuid";
+import Modals from "./components/Modal";
 
 function App() {
-    const [toDos, setToDos] = useState([
-        { id: 1, task: 'hello world', status: true },
-        { id: 2, task: 'hello friend', status: false },
-    ]);
-    const [form, setForm] = useState('');
+    // data
+    const [toDos, setToDos] = useState(
+        JSON.parse(localStorage.getItem("todos")) || []
+    );
+    // ui
+    const [form, setForm] = useState("");
+    const [status, setStatus] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    //loading
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 800);
+    }, []);
+
+    //set localstorage
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(toDos));
+    }, [toDos]);
 
     const addTask = () => {
-        console.log('clicked');
+        if (!form) {
+            setModalShow(true);
+            return;
+        }
+        const id = uuidv4();
+        setToDos([...toDos, { id: id, task: form, status: status }]);
+        resetForm();
     };
 
-    console.log('form===', form);
+    const resetForm = () => {
+        setForm("");
+        setStatus(false);
+    };
+
+    console.log("todos===", toDos);
 
     return (
         <div className="App" style={padding}>
-            <BinputBox form={form} action={setForm} />
-            <Bbutton label="Add Task" action={addTask} />
-            <Btables toDos={toDos} />
+            <InputBox form={form} action={setForm} />
+            <CheckBox status={status} action={setStatus} />
+            <Buttons label="ADD TODO" action={addTask} />
+            <DataTable toDos={toDos} isLoading={isLoading} />
+            <Modals show={modalShow} onHide={setModalShow} />
         </div>
     );
 }
