@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddToDoForm from "./components/forms/AddToDoForm";
-import DataTable from "./components/DataTable";
+import DataTable from "./components/table/DataTable";
 import Buttons from "./components/Buttons";
 import CheckBox from "./components/CheckBox";
 import ErrorModal from "./components/modals/ErrorModal";
@@ -28,7 +28,7 @@ function App() {
         localStorage.setItem("todos", JSON.stringify(toDos));
     }, [toDos]);
 
-    const addTask = () => {
+    const addToDos = () => {
         if (!form) {
             setIsErrorModalOpen(true);
             return;
@@ -61,13 +61,13 @@ function App() {
         });
         setToDos(newState);
     };
-    // console.log("todos===", toDos);
+    console.log("todos===", toDos);
 
     return (
         <div className="App" style={padding}>
             <AddToDoForm form={form} action={setForm} />
             <CheckBox status={status} action={setStatus} />
-            <Buttons label="ADD TODO" action={addTask} />
+            <Buttons label="ADD TODO" action={addToDos} />
             <DataTable
                 toDos={toDos}
                 isLoading={isLoading}

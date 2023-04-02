@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
-import Spinners from "./Spinners";
-import Buttons from "./Buttons";
-import Badges from "./Badges";
-import EditModal from "./modals/EditModal";
-import DeleteModal from "./modals/DeleteModal";
+import Spinners from "../Spinners";
+import Buttons from "../Buttons";
+import Badges from "../Badges";
+import EditModal from "../modals/EditModal";
+import DeleteModal from "../modals/DeleteModal";
 
 function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
     //ui
