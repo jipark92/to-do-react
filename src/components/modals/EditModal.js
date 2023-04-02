@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 function EditModal({ showModal, closeModal, editValues, editToDo, id }) {
     const [updatedTodo, setUpdatedTodo] = useState(editValues.task);
     const [updatedStatus, setUpdatedStatus] = useState(editValues.status);
-    console.log("ggag");
+
     return (
         <>
             <Modal show={showModal} onHide={closeModal} centered>

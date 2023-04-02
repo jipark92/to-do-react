@@ -19,11 +19,11 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
 
     return !isLoading ? (
         <>
-            <h1 style={header}>TO DO LIST</h1>
+            <h1 style={headerStyle}>TO DO LIST</h1>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th style={taskNumberStyle}>#</th>
+                        <th style={todoNumberStyle}>#</th>
                         <th style={toDosStyle}>To Do</th>
                         <th style={statusStyle}>Status</th>
                         <th style={editBtnStyle}>Edit</th>
@@ -35,7 +35,7 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
                         const { id, task, status } = toDo;
                         return (
                             <tr key={id}>
-                                <td style={taskNumberStyle}>{index}</td>
+                                <td style={todoNumberStyle}>{index}</td>
                                 <td style={toDosStyle}>{task}</td>
                                 <td style={statusStyle}>
                                     {status ? (
@@ -116,12 +116,12 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
     );
 }
 
-const header = {
+const headerStyle = {
     textAlign: "center",
     margin: 25,
 };
 
-const taskNumberStyle = { width: "5%" };
+const todoNumberStyle = { width: "5%" };
 
 const toDosStyle = { width: "75%" };
 

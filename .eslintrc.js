@@ -11,6 +11,6 @@ module.exports = {
     },
     plugins: ["react"],
     rules: {
-        "no-console": 0,
+        "no-console": 2,
     },
 };
