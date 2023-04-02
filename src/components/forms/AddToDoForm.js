@@ -1,5 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 function AddToDoForm({ form, action }) {
     return (
@@ -19,5 +20,10 @@ function AddToDoForm({ form, action }) {
         </Form>
     );
 }
+
+AddToDoForm.propTypes = {
+    form: propTypes.string,
+    action: propTypes.func,
+};
 
 export default AddToDoForm;

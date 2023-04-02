@@ -1,5 +1,6 @@
 import React from "react";
 import Badge from "react-bootstrap/Badge";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 function Badges({ label, color }) {
     return (
@@ -10,5 +11,10 @@ function Badges({ label, color }) {
         </div>
     );
 }
+
+Badges.propTypes = {
+    label: propTypes.string,
+    color: propTypes.string,
+};
 
 export default Badges;

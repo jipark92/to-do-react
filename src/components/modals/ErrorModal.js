@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 function Modals({ showModal, closeModal }) {
     return (
@@ -25,6 +26,11 @@ function Modals({ showModal, closeModal }) {
 
 const modalTitle = {
     color: "#ff0000",
+};
+
+Modals.propTypes = {
+    showModal: propTypes.bool,
+    closeModal: propTypes.func,
 };
 
 export default Modals;

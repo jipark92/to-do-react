@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import EditToDoForm from "../forms/EditToDoForm";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 function EditModal({ showModal, closeModal, editValues, editToDo, id }) {
     const [updatedTodo, setUpdatedTodo] = useState(editValues.task);
@@ -42,5 +43,12 @@ function EditModal({ showModal, closeModal, editValues, editToDo, id }) {
         </>
     );
 }
+
+EditModal.propTypes = {
+    showModal: propTypes.bool,
+    closeModal: propTypes.func,
+    editValues: propTypes.func,
+    editToDo: propTypes.func,
+};
 
 export default EditModal;

@@ -5,6 +5,7 @@ import Buttons from "../Buttons";
 import Badges from "../Badges";
 import EditModal from "../modals/EditModal";
 import DeleteModal from "../modals/DeleteModal";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
     //ui
@@ -20,7 +21,7 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th stlye={taskNumberStyle}>#</th>
+                        <th style={taskNumberStyle}>#</th>
                         <th style={toDosStyle}>To Do</th>
                         <th style={statusStyle}>Status</th>
                         <th style={editBtnStyle}>Edit</th>
@@ -111,5 +112,13 @@ const statusStyle = { textAlign: "end", width: "10%" };
 const editBtnStyle = { textAlign: "end", width: "5%" };
 
 const deleteBtnStyle = { textAlign: "end", width: "10%" };
+
+DataTable.propTypes = {
+    toDos: propTypes.array,
+    isLoading: propTypes.bool,
+    clearToDos: propTypes.func,
+    deleteTodo: propTypes.func,
+    editToDo: propTypes.func,
+};
 
 export default DataTable;
