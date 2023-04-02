@@ -52,7 +52,7 @@ function App() {
         });
         setToDoData(newState);
     };
-
+    console.log("data");
     return (
         <div className="App" style={padding}>
             <AddToDoForm form={form} action={setForm} />
