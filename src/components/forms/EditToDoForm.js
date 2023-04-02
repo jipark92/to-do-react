@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { propTypes } from "react-bootstrap/esm/Image";
+import PropTypes from "prop-types";
 
 function EditToDoForm(props) {
     const { updatedTodo, updatedStatus, setUpdatedStatus, setUpdatedTodo } =
@@ -33,10 +33,10 @@ function EditToDoForm(props) {
 }
 
 EditToDoForm.propTypes = {
-    updatedTodo: propTypes.string,
-    updatedStatus: propTypes.bool,
-    setUpdatedStatus: propTypes.func,
-    setUpdatedTodo: propTypes.func,
+    updatedTodo: PropTypes.string,
+    updatedStatus: PropTypes.bool,
+    setUpdatedStatus: PropTypes.func,
+    setUpdatedTodo: PropTypes.func,
 };
 
 export default EditToDoForm;

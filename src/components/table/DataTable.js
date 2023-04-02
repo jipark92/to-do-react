@@ -5,7 +5,7 @@ import Buttons from "../Buttons";
 import Badges from "../Badges";
 import EditModal from "../modals/EditModal";
 import DeleteModal from "../modals/DeleteModal";
-import { propTypes } from "react-bootstrap/esm/Image";
+import PropTypes from "prop-types";
 
 function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
     //ui
@@ -132,11 +132,11 @@ const editBtnStyle = { textAlign: "end", width: "5%" };
 const deleteBtnStyle = { textAlign: "end", width: "10%" };
 
 DataTable.propTypes = {
-    toDos: propTypes.array,
-    isLoading: propTypes.bool,
-    clearToDos: propTypes.func,
-    deleteTodo: propTypes.func,
-    editToDo: propTypes.func,
+    toDos: PropTypes.array,
+    isLoading: PropTypes.bool,
+    clearToDos: PropTypes.func,
+    deleteTodo: PropTypes.func,
+    editToDo: PropTypes.func,
 };
 
 export default DataTable;

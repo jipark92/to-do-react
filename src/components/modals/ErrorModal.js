@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import { propTypes } from "react-bootstrap/esm/Image";
+import PropTypes from "prop-types";
 
 function Modals({ showModal, closeModal }) {
     return (
@@ -29,8 +29,8 @@ const modalTitle = {
 };
 
 Modals.propTypes = {
-    showModal: propTypes.bool,
-    closeModal: propTypes.func,
+    showModal: PropTypes.bool,
+    closeModal: PropTypes.func,
 };
 
 export default Modals;

@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { propTypes } from "react-bootstrap/esm/Image";
+import PropTypes from "prop-types";
 
 function CheckBox({ status, action }) {
     return (
@@ -18,8 +18,8 @@ function CheckBox({ status, action }) {
 }
 
 CheckBox.propTypes = {
-    status: propTypes.bool,
-    action: propTypes.func,
+    status: PropTypes.bool,
+    action: PropTypes.func,
 };
 
 export default CheckBox;

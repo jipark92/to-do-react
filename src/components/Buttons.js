@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { propTypes } from "react-bootstrap/esm/Image";
+import PropTypes from "prop-types";
 
 function Buttons({ label, action, size, color }) {
     return (
@@ -13,10 +13,10 @@ function Buttons({ label, action, size, color }) {
 }
 
 Buttons.propTypes = {
-    label: propTypes.string,
-    action: propTypes.func,
-    size: propTypes.string,
-    color: propTypes.string,
+    label: PropTypes.string,
+    action: PropTypes.func,
+    size: PropTypes.string,
+    color: PropTypes.string,
 };
 
 export default Buttons;

@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { propTypes } from "react-bootstrap/esm/Image";
+import PropTypes from "prop-types";
 
 function DeleteModal({ showModal, closeModal, action, todoValue }) {
     return (
@@ -36,10 +36,10 @@ function DeleteModal({ showModal, closeModal, action, todoValue }) {
 }
 
 DeleteModal.propTypes = {
-    showModal: propTypes.bool,
-    closeModal: propTypes.func,
-    action: propTypes.func,
-    todoValue: propTypes.string,
+    showModal: PropTypes.bool,
+    closeModal: PropTypes.func,
+    action: PropTypes.func,
+    todoValue: PropTypes.string,
 };
 
 export default DeleteModal;
