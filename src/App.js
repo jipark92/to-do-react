@@ -52,11 +52,16 @@ function App() {
         setToDos(toDos.filter((todo) => todo.id !== id));
     };
 
-    const editToDo = (id) => {
-        return null;
+    const editToDo = (id, updatedTodo, updatedStatus) => {
+        const newState = toDos.map((todo) => {
+            if (todo.id === id) {
+                return { ...todo, task: updatedTodo, status: updatedStatus };
+            }
+            return todo;
+        });
+        setToDos(newState);
     };
-
-    console.log("todos===", toDos);
+    // console.log("todos===", toDos);
 
     return (
         <div className="App" style={padding}>

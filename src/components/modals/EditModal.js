@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import EditToDoForm from "../forms/EditToDoForm";
 
-function EditModal({ showModal, closeModal }) {
+function EditModal({ showModal, closeModal, editValues, editToDo, id }) {
+    const [updatedTodo, setUpdatedTodo] = useState(editValues.task);
+    const [updatedStatus, setUpdatedStatus] = useState(editValues.status);
+
     return (
         <>
             <Modal show={showModal} onHide={closeModal} centered>
@@ -11,7 +14,12 @@ function EditModal({ showModal, closeModal }) {
                     <Modal.Title>EDIT</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <EditToDoForm />
+                    <EditToDoForm
+                        updatedTodo={updatedTodo}
+                        setUpdatedTodo={setUpdatedTodo}
+                        updatedStatus={updatedStatus}
+                        setUpdatedStatus={setUpdatedStatus}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button
@@ -24,6 +32,7 @@ function EditModal({ showModal, closeModal }) {
                         variant="primary"
                         onClick={() => {
                             closeModal(false);
+                            editToDo(id, updatedTodo, updatedStatus);
                         }}
                     >
                         Save Changes

@@ -12,6 +12,7 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     //data
     const [id, setId] = useState();
+    const [editValues, setEditValues] = useState();
 
     return !isLoading ? (
         <>
@@ -50,7 +51,11 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
                                     <Buttons
                                         size="sm"
                                         label="Edit"
-                                        action={setIsEditModalOpen}
+                                        action={() => {
+                                            setIsEditModalOpen(true);
+                                            setEditValues(toDo);
+                                            setId(id);
+                                        }}
                                     />
                                 </td>
                                 <td style={deleteBtnStyle}>
@@ -69,11 +74,15 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
                     })}
                 </tbody>
             </Table>
-            <EditModal
-                showModal={isEditModalOpen}
-                closeModal={setIsEditModalOpen}
-                editToDo={() => editToDo(id)}
-            />
+            {isEditModalOpen && (
+                <EditModal
+                    showModal={isEditModalOpen}
+                    closeModal={setIsEditModalOpen}
+                    editValues={editValues}
+                    editToDo={editToDo}
+                    id={id}
+                />
+            )}
             <DeleteModal
                 showModal={isDeleteModalOpen}
                 closeModal={setIsDeleteModalOpen}
