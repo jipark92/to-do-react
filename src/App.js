@@ -5,28 +5,19 @@ import Buttons from "./components/Buttons";
 import CheckBox from "./components/CheckBox";
 import ErrorModal from "./components/modals/ErrorModal";
 import { v4 as uuidv4 } from "uuid";
+import useFetch from "./hooks/useFetch";
 
 function App() {
-    // data
-    const [toDos, setToDos] = useState(
-        JSON.parse(localStorage.getItem("todos")) || []
-    );
-
+    //hooks
+    const { isLoading, todoData, setToDoData } = useFetch();
     // ui
     const [form, setForm] = useState("");
     const [status, setStatus] = useState(false);
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 800);
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("todos", JSON.stringify(toDos));
-    }, [toDos]);
+        localStorage.setItem("todos", JSON.stringify(todoData));
+    }, [todoData]);
 
     const addToDos = () => {
         if (!form) {
@@ -34,7 +25,7 @@ function App() {
             return;
         }
         const id = uuidv4();
-        setToDos([...toDos, { id: id, task: form, status: status }]);
+        setToDoData([...todoData, { id: id, task: form, status: status }]);
         resetForm();
     };
 
@@ -45,23 +36,22 @@ function App() {
 
     const clearToDos = () => {
         localStorage.clear();
-        setToDos([]);
+        setToDoData([]);
     };
 
     const deleteTodo = (id) => {
-        setToDos(toDos.filter((todo) => todo.id !== id));
+        setToDoData(todoData.filter((todo) => todo.id !== id));
     };
 
     const editToDo = (id, updatedTodo, updatedStatus) => {
-        const newState = toDos.map((todo) => {
+        const newState = todoData.map((todo) => {
             if (todo.id === id) {
                 return { ...todo, task: updatedTodo, status: updatedStatus };
             }
             return todo;
         });
-        setToDos(newState);
+        setToDoData(newState);
     };
-    console.log("todos===", toDos);
 
     return (
         <div className="App" style={padding}>
@@ -69,7 +59,7 @@ function App() {
             <CheckBox status={status} action={setStatus} />
             <Buttons label="ADD TODO" action={addToDos} />
             <DataTable
-                toDos={toDos}
+                toDos={todoData}
                 isLoading={isLoading}
                 clearToDos={clearToDos}
                 deleteTodo={deleteTodo}
