@@ -3,14 +3,16 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { propTypes } from "react-bootstrap/esm/Image";
 
-function DeleteModal({ showModal, closeModal, deleteToDo }) {
+function DeleteModal({ showModal, closeModal, action, todoValue }) {
     return (
         <>
             <Modal show={showModal} onHide={closeModal} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>CONFIRM DELETE</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>ARE YOU SURE YOU WANT TO DELETE?</Modal.Body>
+                <Modal.Body>
+                    ARE YOU SURE YOU WANT TO DELETE <b>{todoValue}</b>?
+                </Modal.Body>
                 <Modal.Footer>
                     <Button
                         variant="secondary"
@@ -21,7 +23,7 @@ function DeleteModal({ showModal, closeModal, deleteToDo }) {
                     <Button
                         variant="danger"
                         onClick={() => {
-                            deleteToDo();
+                            action();
                             closeModal(false);
                         }}
                     >
@@ -36,7 +38,8 @@ function DeleteModal({ showModal, closeModal, deleteToDo }) {
 DeleteModal.propTypes = {
     showModal: propTypes.bool,
     closeModal: propTypes.func,
-    deleteToDo: propTypes.func,
+    action: propTypes.func,
+    todoValue: propTypes.string,
 };
 
 export default DeleteModal;

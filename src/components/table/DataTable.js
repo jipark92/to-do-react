@@ -11,6 +11,8 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
     //ui
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
+        useState(false);
     //data
     const [id, setId] = useState();
     const [editValues, setEditValues] = useState();
@@ -66,6 +68,7 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
                                         color="danger"
                                         action={() => {
                                             setIsDeleteModalOpen(true);
+                                            setEditValues(toDo);
                                             setId(id);
                                         }}
                                     />
@@ -84,13 +87,28 @@ function DataTable({ toDos, isLoading, clearToDos, deleteTodo, editToDo }) {
                     id={id}
                 />
             )}
-            <DeleteModal
-                showModal={isDeleteModalOpen}
-                closeModal={setIsDeleteModalOpen}
-                deleteToDo={() => deleteTodo(id)}
-            />
+            {isDeleteModalOpen && (
+                <DeleteModal
+                    showModal={isDeleteModalOpen}
+                    closeModal={setIsDeleteModalOpen}
+                    action={() => deleteTodo(id)}
+                    todoValue={editValues.task}
+                />
+            )}
             {toDos.length > 0 && (
-                <Buttons label="CLEAR" color="danger" action={clearToDos} />
+                <>
+                    <Buttons
+                        label="CLEAR"
+                        color="danger"
+                        action={() => setIsConfirmDeleteModalOpen(true)}
+                    />
+                    <DeleteModal
+                        showModal={isConfirmDeleteModalOpen}
+                        closeModal={setIsConfirmDeleteModalOpen}
+                        action={clearToDos}
+                        todoValue="ALL"
+                    />
+                </>
             )}
         </>
     ) : (
