@@ -49,6 +49,7 @@ EditModal.propTypes = {
     closeModal: propTypes.func,
     editValues: propTypes.func,
     editToDo: propTypes.func,
+    id: propTypes.string,
 };
 
 export default EditModal;
